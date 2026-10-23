@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nikash Chhadia</title>
+  <meta name="description" content="Nikash Chhadia builds AI agent systems and training infrastructure. Member of Technical Staff at Mirendil; previously xAI, Tesla and AWS. Stanford CS + Math.">
+  <meta property="og:title" content="Nikash Chhadia">
+  <meta property="og:description" content="AI agent systems, training infra and applied ML. MTS @ Mirendil. Prev xAI, Tesla, AWS. Stanford CS + Math.">
+  <meta property="og:type" content="website">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script>
+    // Apply a saved theme before first paint to avoid a flash.
+    // Default is the system theme; a manual toggle lasts only for this tab (see main.js).
+    try {
+      localStorage.removeItem("theme"); // drop the persistent override older versions saved
+      const t = sessionStorage.getItem("theme");
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <div class="page">
+    <header class="top">
+      <span class="mark" aria-hidden="true">nc</span>
+      <div class="top-actions">
+        <button class="chip" id="open-palette" type="button" aria-label="Open command menu" hidden>
+          <kbd>⌘</kbd><kbd>K</kbd>
+        </button>
+        <button class="chip" id="theme" type="button" aria-label="Toggle dark mode" hidden>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="name">
+        <h1 id="name">Nikash Chhadia</h1>
+        <p class="lede">
+          I build <em>AI agent systems</em> and the infrastructure that trains them.
+          Currently a Member of Technical Staff at <a href="https://mirendil.com">Mirendil</a>.
+          Previously, I worked on Grok at <a href="https://x.ai">xAI</a>, built real-time energy forecasting for
+          <a href="https://www.tesla.com">Tesla</a>'s Powerwall and Megapack fleet, and built agentic validation for
+          quantum hardware at <a href="https://aws.amazon.com/braket/">AWS</a>. I studied CS &amp; Math at Stanford.
+        </p>
+        <ul class="links" aria-label="Contact">
+          <li><a href="mailto:chhadia@stanford.edu">Email<span class="arr" aria-hidden="true">↗︎</span></a></li>
+          <li><a href="https://github.com/nikashchhadia">GitHub<span class="arr" aria-hidden="true">↗︎</span></a></li>
+          <li><a href="https://www.linkedin.com/in/nikashchhadia">LinkedIn<span class="arr" aria-hidden="true">↗︎</span></a></li>
+        </ul>
+      </section>
+
+      <section id="work" aria-labelledby="work-h">
+        <h2 id="work-h">Work</h2>
+        <ol class="timeline">
+          <li class="item" id="mirendil">
+            <span class="when">2026 –</span>
+            <span class="logo" style="--mark:url(assets/marks/mirendil.png)" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://mirendil.com">Mirendil</a> <span class="role">Member of Technical Staff</span></h3>
+              <p>RSI</p>
+            </div>
+          </li>
+          <li class="item" id="xai">
+            <span class="when">2025 – 26</span>
+            <span class="logo" style="--mark:url(assets/marks/xai.svg)" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://x.ai">xAI</a> <span class="role">Member of Technical Staff</span></h3>
+              <p>Grok</p>
+            </div>
+          </li>
+          <li class="item" id="tesla">
+            <span class="when">2025</span>
+            <span class="logo" style="--mark:url(assets/marks/tesla.svg);--brand:#e31937" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://www.tesla.com">Tesla</a> <span class="role">Machine Learning Engineer Intern</span></h3>
+              <p>Real-time ML forecasting for Opticaster, the energy optimization engine across 1M+ Powerwall and Megapack sites. Built a simulation data pipeline, first launched at Fremont Factory, saving $4M+/year in energy costs.</p>
+            </div>
+          </li>
+          <li class="item" id="aws-braket">
+            <span class="when">2025</span>
+            <span class="logo" style="--mark:url(assets/marks/aws.svg);--brand:#ff9900" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://aws.amazon.com/braket/">AWS Braket</a> <span class="role">Software Development Engineer Intern</span></h3>
+              <p>Built an agentic AI system to verify QPU calibration metrics, and automated quantum device onboarding (95% less time, no manual error).</p>
+            </div>
+          </li>
+          <li class="item" id="arc">
+            <span class="when">2025</span>
+            <span class="logo" style="--mark:url(assets/marks/arc.svg);--brand:#0073e6" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://arcinstitute.org">Arc Institute</a> <span class="role">Research Engineer</span></h3>
+              <p>ML systems and agent orchestration for generative biology: research, infra and experimentation.</p>
+            </div>
+          </li>
+          <li class="item" id="aws-ec2">
+            <span class="when">2024</span>
+            <span class="logo" style="--mark:url(assets/marks/aws.svg);--brand:#ff9900" aria-hidden="true"></span>
+            <div class="what">
+              <h3><a href="https://aws.amazon.com/ec2/">AWS EC2</a> <span class="role">Software Development Engineer Intern</span></h3>
+              <p>Features for the EC2 provisioning system (5,000+ RPS), and a debugging redesign that cut the logs and sites needed per host by 80%.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+
+      <section id="education" aria-labelledby="edu-h">
+        <h2 id="edu-h">Education</h2>
+        <ol class="timeline">
+          <li class="item">
+            <span class="when">MS</span>
+            <span class="logo" style="--mark:url(assets/marks/stanford.svg);--brand:#8c1515" aria-hidden="true"></span>
+            <div class="what">
+              <h3>Stanford University <span class="role">Computer Science</span></h3>
+            </div>
+          </li>
+          <li class="item">
+            <span class="when">BS</span>
+            <span class="logo" style="--mark:url(assets/marks/stanford.svg);--brand:#8c1515" aria-hidden="true"></span>
+            <div class="what">
+              <h3>Stanford University <span class="role">Mathematics and Computer Science</span></h3>
+              <p>Tau Beta Pi.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-h">
+        <h2 id="projects-h">Research &amp; Projects</h2>
+        <ul class="projects">
+          <li id="latex-ocr">
+            <h3>Structural Attention in OCR Backbones for LaTeX <a href="https://cs231n.stanford.edu/2024/papers/adaptation-of-ocr-models-for-latex-vision.pdf">Paper<span class="arr" aria-hidden="true">↗︎</span></a></h3>
+            <p>Fine-tuned OCR backbones for image-to-LaTeX on a procedural pipeline rendering 50,000+ expressions/sec under diverse noise and corruption, and surfaced attention heads that track long-range delimiter structure.</p>
+            <span class="tag">Stanford CS231n · 2024</span>
+          </li>
+          <li id="steganography">
+            <h3>Covert Video Steganography via Deep Learning</h3>
+            <p>An end-to-end 3D CNN that hides data in video under adversarial conditions. Adaptive loss weighting improved message secrecy by 48% and capacity by 8% over baselines.</p>
+            <span class="tag">Deep learning · 2024</span>
+          </li>
+          <li id="wheel">
+            <h3>Automated Options Wheel Trader</h3>
+            <p>A fully automated, delta-based Wheel strategy on live options-chain data with real-time execution. Tuned put and call sizing, rolling and exits to a Sharpe ratio above 2.</p>
+            <span class="tag">Quant · 2025</span>
+          </li>
+          <li id="device-agent">
+            <h3>Voice-Controlled Computer-Use Agent <a href="https://github.com/nikashchhadia/treehacks24">GitHub<span class="arr" aria-hidden="true">↗︎</span></a></h3>
+            <p>Speak a task and an LLM breaks it into steps, reads screenshots to find its targets and drives the mouse and keyboard.</p>
+            <span class="tag">TreeHacks '24</span>
+          </li>
+          <li id="datathon">
+            <h3>Citadel Datathon <a href="https://github.com/nikashchhadia/citadel-data-open-23">GitHub<span class="arr" aria-hidden="true">↗︎</span></a></h3>
+            <p>One of 75 selected from thousands of applicants. Analyzed what moves airline stocks: flight reliability, jet fuel prices, events and natural disasters.</p>
+            <span class="tag">Citadel Securities · 2023</span>
+          </li>
+          <li id="heap">
+            <h3>Heap Allocator</h3>
+            <p>Implicit and explicit heap allocators that simulate dynamic memory allocation in C.</p>
+            <span class="tag">Systems · C</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Say hi</h2>
+        <p>Always happy to chat about interesting ideas. <a href="mailto:chhadia@stanford.edu">chhadia@stanford.edu</a></p>
+      </section>
+    </main>
+
+    <footer>
+      <p><span class="js-only">Press <kbd>⌘</kbd><kbd>K</kbd> to get around. </span>© <span id="year">2026</span> Nikash Chhadia</p>
+    </footer>
+  </div>
+
+  <dialog id="palette" aria-label="Command menu">
+    <form method="dialog" class="palette">
+      <input id="palette-input" type="text" placeholder="Type a command or search…" autocomplete="off" spellcheck="false" aria-controls="palette-list">
+      <ul id="palette-list" role="listbox"></ul>
+      <p id="palette-out" class="palette-out" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <script src="field.js?v=5" defer></script>
+  <script src="main.js?v=5" defer></script>
+</body>
+</html>

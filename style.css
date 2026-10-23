@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("assets/fonts/instrument-serif.woff2") format("woff2");
+  font-style: normal; font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2");
+  font-style: italic; font-weight: 400; font-display: swap;
+}
+
+:root {
+  --bg: #fcfbf8;
+  --fg: #141413;
+  --muted: #6b6a66;
+  --rule: rgba(20, 20, 19, .12);
+  --accent: #c2410c;
+  --card: #ffffff;
+  --glass: rgba(252, 251, 248, .55);
+  /* Pastel blobs; field.js reads the same colors from these variables. */
+  --b1: #ffc9b0; --b2: #e2cbff; --b3: #bfe0ff; --b4: #fff0b3;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0e10; --fg: #eeece6; --muted: #9a978f; --rule: rgba(238, 236, 230, .12); --accent: #fb923c; --card: #18181b;
+    --glass: rgba(14, 14, 16, .5);
+    --b1: #5a2a1c; --b2: #3b2463; --b3: #173a5c; --b4: #4a3d12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e0e10; --fg: #eeece6; --muted: #9a978f; --rule: rgba(238, 236, 230, .12); --accent: #fb923c; --card: #18181b;
+  --glass: rgba(14, 14, 16, .5);
+  --b1: #5a2a1c; --b2: #3b2463; --b3: #173a5c; --b4: #4a3d12;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body {
+  margin: 0;
+  color: var(--fg);
+  font: 16px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+/* The pastel blobs live on a fixed layer (iOS ignores background-attachment: fixed) so they
+   line up with the glyphs field.js draws. The layer reaches half a screen past each edge so
+   rubber-band overscroll keeps showing the gradient; blob centers are offset by that 50vh. */
+body::before {
+  content: ""; position: fixed; left: 0; right: 0; top: -50vh; height: 200vh; z-index: 0; pointer-events: none;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(40rem 26rem at 8% 46vh, color-mix(in srgb, var(--b1) 70%, transparent), transparent 70%),
+    radial-gradient(36rem 24rem at 52% 42vh, color-mix(in srgb, var(--b2) 70%, transparent), transparent 70%),
+    radial-gradient(40rem 28rem at 96% 52vh, color-mix(in srgb, var(--b3) 70%, transparent), transparent 70%),
+    radial-gradient(44rem 30rem at 80% 150vh, color-mix(in srgb, var(--b4) 50%, transparent), transparent 70%);
+}
+
+#field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.page { position: relative; z-index: 1; max-width: 52rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; text-decoration-thickness: 1px; transition: text-decoration-color .15s, color .15s; }
+a:hover { text-decoration-color: currentColor; color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; z-index: 2; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--card); padding: .4rem .7rem; }
+
+.top { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0 0; }
+.mark { font: italic 1.5rem/1 var(--serif); color: var(--fg); }
+.top-actions { display: flex; gap: .5rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: 3px; height: 30px; padding: 0 .6rem;
+  border: 1px solid var(--rule); border-radius: 999px; background: var(--glass); color: var(--muted);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: pointer;
+}
+.chip:hover { color: var(--fg); }
+.chip[hidden] { display: none; }
+kbd { font: 500 .72rem/1 var(--mono); padding: .15rem .3rem; border: 1px solid var(--rule); border-radius: 4px; color: var(--muted); }
+.chip kbd { border: 0; padding: 0; }
+
+.hero { padding: 6.5rem 0 3.5rem; }
+h1 { font: 400 clamp(3rem, 8vw, 4.6rem)/1 var(--serif); letter-spacing: -.02em; margin: 0 0 1.5rem; }
+.lede { font-size: 1.12rem; line-height: 1.7; color: var(--muted); margin: 0 0 1.6rem; max-width: 40rem; }
+.lede a { color: var(--fg); }
+.lede em { font: italic 1.22em/1 var(--serif); color: var(--fg); }
+.links { display: flex; flex-wrap: wrap; gap: 1.4rem; list-style: none; padding: 0; margin: 0; }
+.links a, .projects h3 a { font: italic 1.12rem var(--serif); color: var(--muted); text-decoration: none; }
+.arr { display: inline-block; font-style: normal; font-size: .8em; margin-left: 2px; font-variant-emoji: text; transition: transform .2s; }
+.links a:hover, .projects h3 a:hover { color: var(--accent); }
+.links a:hover .arr, .projects h3 a:hover .arr { transform: translate(2px, -2px); }
+
+h2 {
+  font: 400 1.65rem/1 var(--serif); margin: 3.5rem 0 .5rem; padding-bottom: .7rem;
+  border-bottom: 1px solid var(--fg);
+}
+h3 { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.4; }
+.role { font-weight: 400; color: var(--muted); margin-left: .35rem; }
+
+.timeline { list-style: none; padding: 0; margin: 0; }
+.item {
+  display: grid; grid-template-columns: 5.5rem 36px 1fr; gap: 0 1.1rem; align-items: start;
+  padding: 1rem 0; border-top: 1px solid var(--rule);
+  border-radius: 8px; transition: background-color .4s, box-shadow .4s;
+}
+.item:first-child { border-top: 0; }
+.item h3 a { text-decoration: none; }
+.item h3 a:hover { text-decoration: underline; }
+.when { font: .8rem/2.4 var(--mono); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.logo {
+  position: relative; display: block; width: 36px; height: 36px; border-radius: 10px;
+  background: var(--glass); box-shadow: inset 0 0 0 1px var(--rule);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+/* Monochrome marks: the logo file is only a mask, so it takes the text color and turns brand-colored on hover. */
+.logo::after {
+  content: ""; position: absolute; inset: 8px; background: var(--fg); opacity: .82;
+  -webkit-mask: var(--mark) center / contain no-repeat; mask: var(--mark) center / contain no-repeat;
+  transition: background-color .25s, opacity .25s;
+}
+.item:hover .logo::after { background: var(--brand, var(--fg)); opacity: 1; }
+.what p { margin: .2rem 0 0; color: var(--muted); }
+.flash { --hl: color-mix(in srgb, var(--accent) 10%, transparent); background: var(--hl); box-shadow: 0 0 0 10px var(--hl); }
+
+.projects { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2.5rem; }
+.projects li { padding: .75rem 0; border-radius: 8px; transition: background-color .4s, box-shadow .4s; }
+.projects h3 { font: 400 1.4rem/1.2 var(--serif); text-wrap: balance; }
+.projects h3 a { font-size: .98rem; margin-left: .45rem; white-space: nowrap; }
+.projects p { margin: .25rem 0 .35rem; color: var(--muted); }
+.tag { font: .74rem var(--mono); color: var(--muted); opacity: .8; }
+
+.contact p { font-size: 1.05rem; margin: 1rem 0 0; color: var(--muted); }
+.contact a { color: var(--fg); }
+footer { margin-top: 5rem; color: var(--muted); font-size: .85rem; }
+.js-only { display: none; }
+.js .js-only { display: inline; }
+
+@media (max-width: 640px) {
+  .page { padding: 0 1.15rem 3rem; }
+  .hero { padding: 4rem 0 2.5rem; }
+  .lede { font-size: 1.03rem; }
+  .projects { grid-template-columns: 1fr; }
+  .item { grid-template-columns: 32px 1fr; gap: 0 .9rem; }
+  .item .logo { width: 32px; height: 32px; grid-column: 1; grid-row: 1 / span 2; }
+  .when { grid-column: 2; grid-row: 1; line-height: 1.4; font-size: .74rem; }
+  .what { grid-column: 2; grid-row: 2; }
+  .role { display: block; margin-left: 0; }
+}
+
+/* Command palette */
+dialog {
+  border: 1px solid var(--rule); border-radius: 16px; padding: 0; width: min(34rem, calc(100vw - 2rem));
+  background: color-mix(in srgb, var(--card) 88%, transparent); color: var(--fg);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 24px 70px rgba(0,0,0,.25); margin-top: 18vh;
+}
+dialog::backdrop { background: rgba(10,10,10,.25); backdrop-filter: blur(3px); }
+.palette { margin: 0; }
+.palette input { width: 100%; border: 0; border-bottom: 1px solid var(--rule); background: transparent; color: var(--fg); font: 1rem var(--sans); padding: 1rem 1.1rem; outline: none; }
+.palette ul { list-style: none; margin: 0; padding: .4rem; max-height: 50vh; overflow: auto; }
+.palette li { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem .7rem; border-radius: 9px; cursor: pointer; }
+.palette li span:last-child { color: var(--muted); font: .78rem var(--mono); }
+.palette li[aria-selected="true"] { background: var(--rule); }
+.palette-out { margin: 0; padding: 0 1.1rem; font: .85rem/1.5 var(--mono); color: var(--muted); white-space: pre-wrap; }
+.palette-out:not(:empty) { padding: .2rem 1.1rem .9rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Keyboard affordances mean nothing on touch screens. */
+@media (hover: none) { #open-palette, .js .js-only { display: none; } }
